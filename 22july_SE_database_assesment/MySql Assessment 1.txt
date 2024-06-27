@@ -1,0 +1,62 @@
+		
+		My SQL Assessment
+
+
+Q 1. - Write sql query to find the items whose prices are higher than or equal 250rs. Order the result by product price in descending, then product name in ascending. Return pro_name and pro_price
+	
+	Spet 1 - Create Database
+	
+	CREATE DATABASE sql_assessment
+
+	Step 2 - Create Table
+
+	CREATE TABLE assessment
+	(
+		pro_id int,
+	    pro_name varchar(50),
+	    pro_price int,
+	    pro_com int
+	)
+
+	Step 3 - Enter the Values
+
+	INSERT INTO assessment(pro_id,pro_name,pro_price,pro_com) VALUES (101,"Mother Board",3200.00,15);
+	INSERT INTO assessment(pro_id,pro_name,pro_price,pro_com) VALUES (102,"Key Board",450.00,16);
+	INSERT INTO assessment(pro_id,pro_name,pro_price,pro_com) VALUES (103,"ZIP drive",250.00,14);
+	INSERT INTO assessment(pro_id,pro_name,pro_price,pro_com) VALUES (104,"Speaker",550.00,16);
+	INSERT INTO assessment(pro_id,pro_name,pro_price,pro_com) VALUES (105,"Moniter",5000.00,11);
+	INSERT INTO assessment(pro_id,pro_name,pro_price,pro_com) VALUES (106,"DVD drive",900.00,12);
+	INSERT INTO assessment(pro_id,pro_name,pro_price,pro_com) VALUES (107,"CD drive",800.00,12);
+	INSERT INTO assessment(pro_id,pro_name,pro_price,pro_com) VALUES (108,"Printer",2600.00,13);
+	INSERT INTO assessment(pro_id,pro_name,pro_price,pro_com) VALUES (109,"Reliff cartridge",350.00,13);
+	INSERT INTO assessment(pro_id,pro_name,pro_price,pro_com) VALUES (110,"Mouse",250.00,12);
+
+	Step 4 - Arenge Discending order
+
+	SELECT * FROM assessment ORDER BY pro_price DESC
+
+	Step 5 = Arenge Aecending order
+
+	SELECT * from assessment ORDER by pro_name ASC
+
+
+
+Q 2. - Write a sql query to find the cheapest item. Return pro_name and pro_price.
+
+	Step 1 - Find Cheapest item
+
+	SELECT MIN(pro_price) FROM assessment
+
+
+
+Q 3. - Write the sql query to calculate the average price of the items for each company. Return average price and company code.
+
+	Step 1 - Find Average
+
+	SELECT AVG(pro_price) FROM assessment
+
+Q 4. - Write the sql query to find the average total for all the product mention in the table.
+
+	Step 1 - Find average of all product
+
+	SELECT AVG(pro_price) FROM assessment	

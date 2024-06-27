@@ -1,0 +1,9 @@
+
+		MODULE 3
+
+1. What is OPPs? List OPPs concept.
+   OPPs is a computer programming model that organizes software design around data, or object, rather than        function and logic.
+
+
+2. What is the difference between OOPs and POPs ?
+   They both have diffrence work approache. On the one hand, the OOPs style of programming divide a program    into object, where POPs divides in into functions. 

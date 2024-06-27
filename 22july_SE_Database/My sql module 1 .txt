@@ -1,0 +1,163 @@
+		
+		Module
+
+1. Create Table Name : Student and Exam 
+	
+	CREATE DATABASE student_exam_db
+	
+	CREATE TABLE student
+(
+	roll_no int PRIMARY KEY AUTO_INCREMENT,
+   	name varchar(40),
+   	Branch varchar(40)
+)
+
+
+	INSERT INTO `student` (`roll_no`, `name`, `Branch`) VALUES (NULL, 'Jay', 'Computer science'), (NULL,'Suhani', 'Electronic and com'), (NULL, 		'Kriti', 'Electronic and com');
+
+	CREATE TABLE exam
+(
+	rollno int PRIMARY KEY AUTO_INCREMENT,
+   	s_code varchar(50),
+   	Marks int,
+   	p_code varchar(50),
+    
+   	roll_no_fk int,
+   	FOREIGN KEY (roll_no_fk) REFERENCES student (roll_no) 
+)
+
+	INSERT INTO `exam` (`rollno`, `s_code`, `Marks`, `p_code`, `roll_no_fk`) VALUES (NULL, 'CS11', '50','CS', '1'), (NULL, 'CS12', '60', 'CS', 		'1'), (NULL, 'EC101', '66', 'EC', '2'), (NULL, 'EC102', '70', 	'EC', '2'), (NULL, 'EC101', '45', 'EC', '3'), (NULL, 'EC102', '50', 'EC', 		'3');
+
+
+
+2. Create table given below: Employee and Incentive Table 
+
+	CREATE DATABASE employee_insentive_db
+
+	CREATE TABLE employee
+(
+	Employee_id int,
+   	First_name varchar(50),
+   	Last_name varchar(50),
+   	Salaty int,
+   	Joining_date int,
+   	Department varchar(50)
+)
+
+	INSERT INTO employee (Employee_id,First_name,Last_name,Salary,Joining_date,Department) VALUES (1,"John","Abraham",1000000,"01-jan-13 12.00.00 	AM","Banking")
+	INSERT INTO employee (Employee_id,First_name,Last_name,Salary,Joinning_date,Department) VALUES (2,"Michel","Clarke",800000,"01-jan-13 			12.00.00 AM","Insurance");
+	INSERT INTO employee (Employee_id,First_name,Last_name,Salary,Joinning_date,Department) VALUES (3,"Roy","Thomas",700000,"01-fab-13 12.00.00 		AM","Banking");
+	INSERT INTO employee (Employee_id,First_name,Last_name,Salary,Joinning_date,Department) VALUES (4,"Tom","Jose",6000000,"01-feb-13 12.00.00 		AM","Insurance");
+	INSERT INTO employee (Employee_id,First_name,Last_name,Salary,Joinning_date,Department) VALUES (5,"Jerry","Pinto",6500000,"01-feb-13 12.00.00 	AM","Insurance");
+	INSERT INTO employee (Employee_id,First_name,Last_name,Salary,Joinning_date,Department) VALUES (6,"Philips","Mathew",7500000,"01-jan-13 		12.00.00 AM","Services");
+	INSERT INTO employee (Employee_id,First_name,Last_name,Salary,Joinning_date,Department) VALUES (7,"Testname1","123",650000,"01-jan-13 			12.00.00 AM","Services");
+	INSERT INTO employee (Employee_id,First_name,Last_name,Salary,Joinning_date,Department) VALUES (8,"Testname2","Lname%",600000,"Insurance");
+
+	
+	CREATE TABLE incentive
+(
+	Employee_ref_id int,
+   	incentive_date varchar(50),
+   	incentive_amount int
+)
+
+	INSERT INTO incentive (Employee_ref_id,incentive_date,incentive_amount) VALUES (1,"01-feb-13",5000);
+	INSERT INTO incentive (Employee_ref_id,incentive_date,incentive_amount) VALUES (2,"01-feb-13",3000);
+	INSERT INTO incentive (Employee_ref_id,incentive_date,incentive_amount) VALUES (3,"01-feb-13",4000);
+	INSERT INTO incentive (Employee_ref_id,incentive_date,incentive_amount) VALUES (1,"01-jan-13",4500);
+	INSERT INTO incentive (Employee_ref_id,incentive_date,incentive_amount) VALUES (2,"01-jan=13",3500);
+
+
+a) Get First_Name from employee table using Tom name “Employee Name”. 
+	
+	SELECT * FROM employee WHERE First_name LIKE 'T%'
+
+b) Get FIRST_NAME, Joining Date, and Salary from employee table. 
+
+	SELECT employee.First_name,employee.First_name,employee.Salary FROM employee
+
+c) Get all employee details from the employee table order by First_Name Ascending and Salary descending?	
+
+	SELECT * FROM employee ORDER BY First_name ASC
+
+	SELECT * FROM employee ORDER by Salary DESC
+
+d) Get employee details from employee table whose first name contains ‘J’. 
+
+	SELECT * FROM employee WHERE First_name LIKE 'J%'
+
+e) Get department wise maximum salary from employee table order by salary ascending? 
+	
+	SELECT MAX (Salary) FROM employee
+
+f) Select first_name, incentive amount from employee and incentives table for those employees 
+   who have incentives and incentive amount greater than 3000.
+	
+	SELECT * FROM incentive WHERE incentive_amount>3000
+
+
+g) Create After Insert trigger on Employee table which insert records in 
+   view table.
+
+	DELIMITER $$
+	
+	CREATE TRIGGER insert_trigger AFTER INSERT ON employee FOR EACH ROW
+	BEGIN
+
+	INSERT INTO test(Employee_id,First_name,Last_name,Salary,Joinning_date,Department,action_performed) VALUES 		(c_Employee_id,c_First_name,c_Last_name,c_Salary,c_joinning_date,c_Department,"Record Inserted!");
+
+	END
+
+
+
+3. Create table given below: Salesperson and Customer 
+
+	
+	CREATE TABLE salesperson
+(
+	SNO int PRIMARY KEY AUTO_INCREMENT,
+   	SNAME varchar(50),
+   	CITY varchar(50),
+   	COMM varchar(50)
+)
+
+	INSERT INTO salesperson (SNO,SNAME,CITY,COMM) VALUES (1001,"Peel","London",".12");
+	INSERT INTO salesperson (SNO,SNAME,CITY,COMM) VALUES (1002,"Serres","San Jose",".13");
+	INSERT INTO salesperson (SNO,SNAME,CITY,COMM) VALUES (1004,"Motika","London",".11");
+	INSERT INTO salesperson (SNO,SNAME,CITY,COMM) VALUES (1007,"Rafkin","Barcelona",".15");
+	INSERT INTO salesperson (SNO,SNAME,CITY,COMM) VALUES (1003,"Axelrod","New York",".1");
+
+
+	CREATE TABLE customer
+(
+	CNM int PRIMARY KEY AUTO_INCREMENT,
+   	CNAME varchar(50),
+   	CITY varchar(50),
+   	RATING varchar(50),
+    
+   	SNO_fk int,
+   	FOREIGN KEY (SNO_fk) REFERENCES salesperson (SNO)
+)	
+
+
+	INSERT INTO `customer` (`CNM`, `CNAME`, `CITY`, `RATING`, `SNO_fk`) VALUES ('201', 'Hoffman', 'London', '100', '1001'), ('202', 'Giovenne', 	'Roe', '200', '1003'), ('203', 'Liu', 'San Jose', '300', '1002'), ('204', 'Grass', 'Barcelona', '100', '1002'), ('206', 'Clemens', 'London', 	'300', '1007'), ('207', 'Pereira', 'Roe', '100', '1004');	
+	
+a)SELECT * from customer WHERE SNO_fk>1000
+
+b)SELECT * FROM salesperson WHERE COMM>0.12
+
+c) SELECT * FROM salesperson WHERE salesperson.city = 'CITY' OR city = 'CITY';
+
+a) SELECT * from salesperson WHERE COMM BETWEEN .10 and .12 
+
+b) SELECT * FROM customer WHERE RATING <= 100
+
+
+
+
+
+
+
+
+
+

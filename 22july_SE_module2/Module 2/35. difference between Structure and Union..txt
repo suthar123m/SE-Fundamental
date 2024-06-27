@@ -1,0 +1,14 @@
+37. WAP to show difference between Structure and Union.
+
+Structure (struct):
+
+  •  In a structure, each member (variable) has its own memory location.
+  •  Each member can have a different data type.
+  •  Memory is allocated for all members simultaneously, and the size of the structure is the sum of the sizes of its members.
+  •  Structures are used when you want to store and access different types of information simultaneously.
+
+Union:
+
+  •  In a union, all members share the same memory location.
+  •  All members have the same starting memory address, and only one member can hold a value at a time.
+  •  Unions are used when you want to save memory by sharing the same space for different types of information, and you only need one of them at a time.
